@@ -39,15 +39,15 @@ model client {
   direction     String
   order         order[]
   delivery      delivery[]
-  isActive   Boolean
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
+  isActive      Boolean
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }
 
 model orderDetail {
   id        String   @id
   amount    Float
+  unitPrice Float
   productId String
   product   product  @relation(fields: [productId], references: [id])
   orderId   String
@@ -116,28 +116,27 @@ model purchase {
 }
 
 model stock {
-  id        String  @id
+  id        String   @id
   amount    Float
-  productId String  @unique
-  isActive   Boolean
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  productId String   @unique
+  isActive  Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  product   product @relation(fields: [productId], references: [id])
+  product product @relation(fields: [productId], references: [id])
 }
 
 model price {
-  id               String  @id
+  id               String   @id
   productAvailable Float
   productWaste     Float
   MOD              Float
   transportation   Float
   misallanious     Float
   utility          Float
-  product          product @relation(fields: [productId], references: [id])
-  productId        String  @unique
-  isActive   Boolean
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
+  product          product  @relation(fields: [productId], references: [id])
+  productId        String   @unique
+  isActive         Boolean
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
