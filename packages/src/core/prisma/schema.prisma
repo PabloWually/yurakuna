@@ -108,7 +108,9 @@ model delivery {
 model purchase {
   id             String           @id
   batch          String
-  client         String
+  purchaseDate   DateTime
+  total          Float
+  dealer         String
   purchaseDetail purchaseDetail[]
   isActive       Boolean
   createdAt      DateTime         @default(now())
