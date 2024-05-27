@@ -65,20 +65,21 @@ model order {
   isActive    Boolean
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
-  client      client?       @relation(fields: [clientId], references: [id])
+  client      client        @relation(fields: [clientId], references: [id])
   clientId    String
 }
 
 model purchaseDetail {
-  id         String    @id
+  id         String   @id
   amount     Float
   productId  String
-  product    product   @relation(fields: [productId], references: [id])
+  totalPrice  Float
+  product    product  @relation(fields: [productId], references: [id])
   isActive   Boolean
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  purchase   purchase? @relation(fields: [purchaseId], references: [id])
-  purchaseId String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  purchase   purchase @relation(fields: [purchaseId], references: [id])
+  purchaseId String
 }
 
 model deliveryDetail {
