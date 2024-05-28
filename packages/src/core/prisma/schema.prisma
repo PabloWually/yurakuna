@@ -73,7 +73,7 @@ model purchaseDetail {
   id         String   @id
   amount     Float
   productId  String
-  totalPrice  Float
+  totalPrice Float
   product    product  @relation(fields: [productId], references: [id])
   isActive   Boolean
   createdAt  DateTime @default(now())
@@ -96,14 +96,14 @@ model deliveryDetail {
 
 model delivery {
   id             String           @id
-  deliveredOn    DateTime
+  deliveryDate   DateTime
   total          Float
   deliveryDetail deliveryDetail[]
   isActive       Boolean
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
-  client         client?          @relation(fields: [clientId], references: [id])
-  clientId       String?
+  client         client          @relation(fields: [clientId], references: [id])
+  clientId       String
 }
 
 model purchase {
