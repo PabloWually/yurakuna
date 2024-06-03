@@ -134,9 +134,9 @@ model price {
   id               String   @id
   productAvailable Float
   productWaste     Float
-  MOD              Float
+  mod              Float
   transportation   Float
-  misallanious     Float
+  misellanious     Float
   utility          Float
   product          product  @relation(fields: [productId], references: [id])
   productId        String   @unique
