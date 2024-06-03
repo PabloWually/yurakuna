@@ -10,7 +10,7 @@ export class Product extends AggregateRoot {
     readonly id: ProductId,
     readonly name: Name,
     readonly unity: Unity,
-    readonly price: Price,
+    readonly pvp: PVP,
     readonly isActive: IsActive,
   ) {
     super();
@@ -21,7 +21,7 @@ export class Product extends AggregateRoot {
       new ProductId(primitives.id),
       new Name(primitives.name),
       new Unity(primitives.unity),
-      new Price(primitives.price),
+      new PVP(primitives.pvp),
       new IsActive(primitives.isActive),
     );
   }
@@ -31,7 +31,7 @@ export class Product extends AggregateRoot {
       id: this.id.value,
       name: this.name.value,
       unity: this.unity.value,
-      price: this.price.value,
+      pvp: this.pvp.value,
       isActive: this.isActive.value,
     }
   }
@@ -40,5 +40,5 @@ export class Product extends AggregateRoot {
 export class ProductId extends Uuid{}
 class Name extends StringValue{}
 class Unity extends StringValue{}
-class Price extends PositiveNumber{}
+class PVP extends PositiveNumber{}
 class IsActive extends BooleanValue{}

@@ -6,7 +6,7 @@ export const CreateProductInput = builder.inputType("CreateProductInput", {
     id: t.id({required: true}),
     name: t.string({required: true}),
     unity: t.string({required: true}),
-    price: t.float({required: true}),
+    pvp: t.float({required: true}),
     isActive: t.boolean({required: true}),
   })
 })
@@ -17,7 +17,7 @@ export const ProductType = builder.objectType(ProductModel, {
       id: t.exposeID("id"),
       name: t.exposeString("name"),
       unity: t.exposeString("unity"),
-      price: t.exposeFloat("price"),
+      pvp: t.exposeFloat("pvp"),
       isActive: t.exposeBoolean("isActive"),
     }
   }

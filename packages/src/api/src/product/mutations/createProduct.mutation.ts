@@ -13,7 +13,7 @@ builder.mutationField("createProduct", (t) =>
           id: input.id.toString() || "",
           name: input.name,
           unity: input.unity,
-          price: input.price,
+          pvp: input.pvp,
           isActive: true,
         });
         return {

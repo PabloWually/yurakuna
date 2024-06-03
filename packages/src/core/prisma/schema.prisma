@@ -21,6 +21,7 @@ model product {
   id             String           @id
   name           String
   unity          String
+  pvp          Float
   orderDetail    orderDetail[]
   stock          stock?
   isActive       Boolean

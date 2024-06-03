@@ -12,6 +12,6 @@ interface Request {
   id: string,
   name: string,
   unity: string,
-  price: number,
+  pvp: number,
   isActive: boolean,
 }
