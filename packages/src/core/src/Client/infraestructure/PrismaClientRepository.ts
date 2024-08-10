@@ -6,6 +6,7 @@ import { Criteria } from "../../shared/domain/Criteria";
 import { PrismaCriteriaConverter } from "../../shared/infrastructure/PrismaCriteriaConverter";
 import { Filter } from "../../shared/domain/Criteria/Filter";
 import { PrismaFiltersConverter } from "../../shared/infrastructure/PrismaFilterConverter";
+import { Primitives } from "../../shared/domain/Primitives";
 
 export class PrismaClientRepository extends PrismaRepository
   implements ClientRepository {
@@ -45,8 +46,8 @@ export class PrismaClientRepository extends PrismaRepository
       ...PrismaCriteriaConverter(criteria),
       orderBy: { name: "asc" },
     });
-    const data = response.map(product => {
-      return Client.fromPrimitives(product);
+    const data = response.map((client: Primitives<Client>) => {
+      return Client.fromPrimitives(client);
     });
     return data;
   }

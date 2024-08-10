@@ -1,7 +1,7 @@
 import { Criteria } from "../../shared/domain/Criteria";
 import { Filter } from "../../shared/domain/Criteria/Filter";
 import { Nullable } from "../../shared/domain/Nullable";
-import { Order, OrderId } from "./Client";
+import { Order, OrderId } from "./Order";
 
 export interface OrderRepository {
   save(order: Order): Promise<void>;
