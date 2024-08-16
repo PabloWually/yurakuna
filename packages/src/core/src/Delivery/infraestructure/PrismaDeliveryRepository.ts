@@ -6,6 +6,7 @@ import { Criteria } from "../../shared/domain/Criteria";
 import { PrismaCriteriaConverter } from "../../shared/infrastructure/PrismaCriteriaConverter";
 import { Filter } from "../../shared/domain/Criteria/Filter";
 import { PrismaFiltersConverter } from "../../shared/infrastructure/PrismaFilterConverter";
+import { Primitives } from "../../shared/domain/Primitives";
 
 export class PrismaDeliveryRepository extends PrismaRepository
   implements DeliveryRepository {
@@ -44,7 +45,7 @@ export class PrismaDeliveryRepository extends PrismaRepository
     const response = await this.prisma.delivery.findMany({
       ...PrismaCriteriaConverter(criteria),
     });
-    const data = response.map(delivery => {
+    const data = response.map((delivery: Primitives<Delivery>) => {
       return Delivery.fromPrimitives(delivery);
     });
     return data;

@@ -1,0 +1,123 @@
+type BaseError implements Error {
+  error: Boolean!
+  message: String!
+}
+
+input CreatePriceInput {
+  id: ID!
+  isActive: Boolean!
+  misellanious: Float!
+  mod: Float!
+  productAvailable: Float!
+  productId: String!
+  productWaste: Float!
+  transportation: Float!
+  utility: Float!
+}
+
+input CreateProductInput {
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  pvp: Float!
+  unity: String!
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+interface Error {
+  error: Boolean!
+  message: String!
+}
+
+input FilterInput {
+  field: String!
+  operator: Operator!
+  values: String!
+}
+
+type Mutation {
+  createPrice(input: CreatePriceInput!): MutationCreatePriceResult!
+  createProduct(input: CreateProductInput!): MutationCreateProductResult!
+}
+
+union MutationCreatePriceResult = BaseError | MutationCreatePriceSuccess
+
+type MutationCreatePriceSuccess {
+  data: response!
+}
+
+union MutationCreateProductResult = BaseError | MutationCreateProductSuccess
+
+type MutationCreateProductSuccess {
+  data: response!
+}
+
+enum Operator {
+  CONTAINS
+  DATE_GTE
+  DATE_LTE
+  EQUAL
+  HAS
+  HAS_EVERY
+  HAS_SOME
+  NOT_EQUAL
+  SEARCH
+}
+
+type Price {
+  id: ID!
+  isActive: Boolean!
+  misellanious: Float!
+  mod: Float!
+  productAvailable: Float!
+  productId: String!
+  productWaste: Float!
+  transpotation: Float!
+  utility: Float!
+}
+
+type PriceList {
+  products: [Price!]!
+  total: Int!
+}
+
+type Product {
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  pvp: Float!
+  unity: String!
+}
+
+type Products {
+  products: [Product!]!
+  total: Int!
+}
+
+type Query {
+  price(priceId: String!): QueryPriceResult!
+  prices(filters: [FilterInput!]! = [], limit: Int!, offset: Int!): PriceList!
+  product(productId: String!): QueryProductResult!
+  products(filters: [FilterInput!]! = [], limit: Int!, offset: Int!): Products!
+}
+
+union QueryPriceResult = BaseError | QueryPriceSuccess
+
+type QueryPriceSuccess {
+  data: Price!
+}
+
+union QueryProductResult = BaseError | QueryProductSuccess
+
+type QueryProductSuccess {
+  data: Product!
+}
+
+type response {
+  error: Boolean
+  success: Boolean!
+}

@@ -6,8 +6,12 @@
   "author": "Pablo Guallichico",
   "license": "MIT",
   "scripts": {
+    "deploy": "vercel",
+    "start": "node public/index.js",
+    "build": "yarn prisma generate --schema=./src/core/prisma/schema.prisma && tsc",
     "env": "dotenv-run-script",
     "dev": "ts-node-dev index.ts",
+    "postinstall": "yarn prisma:generate",
     "prisma:generate": "npx prisma generate --schema=./src/core/prisma/schema.prisma",
     "prisma:push": "npx prisma db push --schema=./src/core/prisma/schema.prisma"
   },
