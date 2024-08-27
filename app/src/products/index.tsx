@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { ProductTable } from "./components/ProductsTable";
 import { useState } from "react";
+import { ModalProducts } from "./components/ProductForm/ModalProducts";
 
 export const Products = () => {
   const [open, setOpen] = useState(false);
@@ -12,6 +13,7 @@ export const Products = () => {
         <Button variant='contained' onClick={() => setOpen(true)} >Nuevo</Button>
       </Box>
       <ProductTable />
+      <ModalProducts open={open} setOpen={setOpen}  />
     </Box>
   )
 
