@@ -1,7 +1,7 @@
 import { ModalForm } from "@/src/shared/components/ModalForm";
-import { Typography } from "@mui/material"
 import { Formik } from "formik";
 import { ProductsForm } from "./Form";
+import { schema } from "../../lib/schema";
 
 export const ModalProducts = (props: ModalProps) => {
   const handleClose = () => {
@@ -15,9 +15,12 @@ export const ModalProducts = (props: ModalProps) => {
     >
       <Formik
         initialValues={{}}
-        onSubmit={()=>{}}
+        validationSchema={schema}
+        onSubmit={(values) => console.log(values) }
       >
-        <ProductsForm />
+        {({ values, errors }) => (
+          <ProductsForm />
+        )}
       </Formik>
     </ModalForm>
   )
