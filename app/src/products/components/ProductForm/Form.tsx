@@ -23,8 +23,8 @@ export const ProductsForm = () => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <InputTextField
-            id='productAvailable'
-            label='Producto Disponible (unidad)'
+            id='productPurchased'
+            label='Producto comprado (unidad)'
             type='number'
             fullWidth
           />
@@ -35,8 +35,8 @@ export const ProductsForm = () => {
             fullWidth
           />
           <InputTextField
-            id='transportation'
-            label='Transporte ($)'
+            id='purchaseAmount'
+            label='Valor de la compra ($)'
             type='number'
             fullWidth
           />
@@ -45,6 +45,12 @@ export const ProductsForm = () => {
           <InputTextField
             id='utility'
             label='Utilidad (%)'
+            type='number'
+            fullWidth
+          />
+          <InputTextField
+            id='transportation'
+            label='Transporte ($)'
             type='number'
             fullWidth
           />
