@@ -43,7 +43,7 @@ export const ProductsForm = () => {
         </Grid>
         <Grid item xs={6}>
           <InputTextField
-            id='utility'
+            id='profit'
             label='Utilidad (%)'
             type='number'
             fullWidth

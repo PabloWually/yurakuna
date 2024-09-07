@@ -5,9 +5,9 @@ export const schema = object().shape({
   unity: object().required("Seleccione una opción"),
   productPurchased: number().required("Campo requerido").min(0, "Valor no válido"),
   productWaste: number().required("Campo requerido").min(0, "Valor no válido"),
-  purchaseAmout: number().required("Campo requerido").min(0, "Valor no válido"),
+  purchaseAmount: number().required("Campo requerido").min(0, "Valor no válido"),
   transportation: number().required("CampoRequerido").min(0, "Valor no válido"),
-  utility: number().required("CampoRequerido").min(0, "Valor no válido").max(100, "Valor no válido"),
+  profit: number().required("CampoRequerido").min(0, "Valor no válido").max(100, "Valor no válido"),
   misellanious: number().required("CampoRequerido").min(0, "Valor no válido"),
   mod: number().required("CampoRequerido").min(0, "Valor no válido"),
 })
