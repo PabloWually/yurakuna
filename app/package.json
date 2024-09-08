@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "genql": "genql --endpoint https://yurakuna.vercel.app/graphql --output ./genql"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -20,12 +21,14 @@
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "uuid": "^10.0.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "typescript": "^5"

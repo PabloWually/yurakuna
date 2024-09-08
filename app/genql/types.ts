@@ -34,19 +34,22 @@ export default {
             "mod": [
                 7
             ],
-            "productAvailable": [
-                7
-            ],
             "productId": [
                 25
+            ],
+            "productPurchased": [
+                7
             ],
             "productWaste": [
                 7
             ],
-            "transportation": [
+            "profit": [
                 7
             ],
-            "utility": [
+            "purchaseAmount": [
+                7
+            ],
+            "transportation": [
                 7
             ],
             "__typename": [
@@ -186,19 +189,22 @@ export default {
             "mod": [
                 7
             ],
-            "productAvailable": [
-                7
-            ],
             "productId": [
                 25
+            ],
+            "productPurchased": [
+                7
             ],
             "productWaste": [
                 7
             ],
-            "transpotation": [
+            "profit": [
                 7
             ],
-            "utility": [
+            "purchaseAmount": [
+                7
+            ],
+            "transpotation": [
                 7
             ],
             "__typename": [

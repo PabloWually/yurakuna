@@ -8,11 +8,12 @@ input CreatePriceInput {
   isActive: Boolean!
   misellanious: Float!
   mod: Float!
-  productAvailable: Float!
   productId: String!
+  productPurchased: Float!
   productWaste: Float!
+  profit: Float!
+  purchaseAmount: Float!
   transportation: Float!
-  utility: Float!
 }
 
 input CreateProductInput {
@@ -73,11 +74,12 @@ type Price {
   isActive: Boolean!
   misellanious: Float!
   mod: Float!
-  productAvailable: Float!
   productId: String!
+  productPurchased: Float!
   productWaste: Float!
+  profit: Float!
+  purchaseAmount: Float!
   transpotation: Float!
-  utility: Float!
 }
 
 type PriceList {

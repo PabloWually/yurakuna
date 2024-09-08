@@ -47,11 +47,12 @@ export interface Price {
     isActive: Scalars['Boolean']
     misellanious: Scalars['Float']
     mod: Scalars['Float']
-    productAvailable: Scalars['Float']
     productId: Scalars['String']
+    productPurchased: Scalars['Float']
     productWaste: Scalars['Float']
+    profit: Scalars['Float']
+    purchaseAmount: Scalars['Float']
     transpotation: Scalars['Float']
-    utility: Scalars['Float']
     __typename: 'Price'
 }
 
@@ -111,7 +112,7 @@ export interface BaseErrorGenqlSelection{
     __scalar?: boolean | number
 }
 
-export interface CreatePriceInput {id: Scalars['ID'],isActive: Scalars['Boolean'],misellanious: Scalars['Float'],mod: Scalars['Float'],productAvailable: Scalars['Float'],productId: Scalars['String'],productWaste: Scalars['Float'],transportation: Scalars['Float'],utility: Scalars['Float']}
+export interface CreatePriceInput {id: Scalars['ID'],isActive: Scalars['Boolean'],misellanious: Scalars['Float'],mod: Scalars['Float'],productId: Scalars['String'],productPurchased: Scalars['Float'],productWaste: Scalars['Float'],profit: Scalars['Float'],purchaseAmount: Scalars['Float'],transportation: Scalars['Float']}
 
 export interface CreateProductInput {id: Scalars['ID'],isActive: Scalars['Boolean'],name: Scalars['String'],pvp: Scalars['Float'],unity: Scalars['String']}
 
@@ -163,11 +164,12 @@ export interface PriceGenqlSelection{
     isActive?: boolean | number
     misellanious?: boolean | number
     mod?: boolean | number
-    productAvailable?: boolean | number
     productId?: boolean | number
+    productPurchased?: boolean | number
     productWaste?: boolean | number
+    profit?: boolean | number
+    purchaseAmount?: boolean | number
     transpotation?: boolean | number
-    utility?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
