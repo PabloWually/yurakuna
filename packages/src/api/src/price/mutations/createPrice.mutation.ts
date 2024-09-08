@@ -12,12 +12,13 @@ builder.mutationField("createPrice", (t) =>
         await injector.priceCreator.run({
           id: input.id.toString() || "",
           productId: input.productId,
-          productAvailable: input.productAvailable,
+          productPurchased: input.productPurchased,
+          purchaseAmount: input.purchaseAmount,
           productWaste: input.productWaste,
           mod: input.mod,
           transportation: input.transportation,
           misellanious: input.misellanious,
-          utility: input.utility,
+          profit: input.profit,
           isActive: true,
         });
         return {
@@ -25,6 +26,7 @@ builder.mutationField("createPrice", (t) =>
           error: false,
         };
       } catch (e) {
+        console.log(e);
         return {
           success: false,
           error: true

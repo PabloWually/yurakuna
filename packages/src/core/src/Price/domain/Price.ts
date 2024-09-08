@@ -10,7 +10,7 @@ export class Price extends AggregateRoot {
     readonly id: PriceId,
     readonly productId: ProductId,
     readonly productPurchased: ProductPurchased,
-    readonly productAmount: ProductAmount,
+    readonly purchaseAmount: PurchaseAmount,
     readonly productWaste: ProductWaste,
     readonly mod:MOD,
     readonly transportation: Transportation,
@@ -26,7 +26,7 @@ export class Price extends AggregateRoot {
       new PriceId(primitives.id),
       new ProductId(primitives.productId),
       new ProductPurchased(primitives.productPurchased),
-      new ProductAmount(primitives.productAmount),
+      new PurchaseAmount(primitives.purchaseAmount),
       new ProductWaste(primitives.productWaste),
       new MOD(primitives.mod),
       new Transportation(primitives.transportation),
@@ -41,7 +41,7 @@ export class Price extends AggregateRoot {
       id: this.id.value,
       productId: this.productId.value,
       productPurchased: this.productPurchased.value,
-      productAmount: this.productAmount.value,
+      purchaseAmount: this.purchaseAmount.value,
       productWaste: this.productWaste.value,
       mod: this.mod.value,
       transportation: this.transportation.value,
@@ -55,7 +55,7 @@ export class Price extends AggregateRoot {
 export class PriceId extends Uuid{}
 class ProductId extends StringValue{}
 class ProductPurchased extends PositiveNumber{}
-class ProductAmount extends PositiveNumber{}
+class PurchaseAmount extends PositiveNumber{}
 class ProductWaste extends PositiveNumber{}
 class MOD extends PositiveNumber{}
 class Transportation extends PositiveNumber{}

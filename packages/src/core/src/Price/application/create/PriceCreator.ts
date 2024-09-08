@@ -11,11 +11,12 @@ export class PriceCreator {
 interface Request {
   id: string,
   productId: string,
-  productAvailable: number,
+  productPurchased: number,
+  purchaseAmount: number,
   productWaste: number,
   mod: number,
   transportation: number,
   misellanious: number,
-  utility: number,
+  profit: number,
   isActive: boolean,
 }

@@ -134,7 +134,7 @@ model stock {
 model price {
   id               String   @id
   productPurchased Float
-  productAmount    Float
+  purchaseAmount    Float
   productWaste     Float
   mod              Float
   transportation   Float
