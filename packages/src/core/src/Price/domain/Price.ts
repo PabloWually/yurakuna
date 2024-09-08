@@ -53,7 +53,7 @@ export class Price extends AggregateRoot {
 }
 
 export class PriceId extends Uuid{}
-class ProductId extends StringValue{}
+export class ProductId extends StringValue{}
 class ProductPurchased extends PositiveNumber{}
 class PurchaseAmount extends PositiveNumber{}
 class ProductWaste extends PositiveNumber{}
