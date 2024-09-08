@@ -1,9 +1,9 @@
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
-import { listProducts } from "../hooks/listProducts";
+import { useListProducts } from "../hooks/uselistProducts";
 import { Box, Button } from "@mui/material";
 
 export const ProductTable = () => {
-  const { data, isLoading, refetch } = listProducts({ offset: 0, limit: 100 });
+  const { data, isLoading, refetch } = useListProducts({ offset: 0, limit: 100 });
 
   const rows = (data?.products || []).map(product => product);
 
