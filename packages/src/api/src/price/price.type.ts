@@ -5,12 +5,13 @@ export const CreatePriceInput = builder.inputType("CreatePriceInput", {
   fields: (t) => ({
     id: t.id({required: true}),
     productId: t.string({required: true}),
-    productAvailable: t.float({required: true}),
+    productPurchased: t.float({required: true}),
+    productAmount: t.float({required: true}),
     productWaste: t.float({required: true}),
     mod: t.float({required: true}),
     transportation: t.float({required: true}),
     misellanious: t.float({required: true}),
-    utility: t.float({required: true}),
+    profit: t.float({required: true}),
     isActive: t.boolean({required: true}),
   })
 })
@@ -20,12 +21,13 @@ export const PriceType = builder.objectType(PriceModel, {
     return {
       id: t.exposeID("id"),
       productId: t.exposeString("productId"),
-      productAvailable: t.exposeFloat("productAvailable"),
+      productPurchased: t.exposeFloat("productPurchased"),
+      productAmount: t.exposeFloat("productAmount"),
       productWaste: t.exposeFloat("productWaste"),
       mod: t.exposeFloat("mod"),
       transpotation: t.exposeFloat("transportation"),
       misellanious: t.exposeFloat("misellanious"),
-      utility: t.exposeFloat("utility"),
+      profit: t.exposeFloat("profit"),
       isActive: t.exposeBoolean("isActive"),
     }
   }
