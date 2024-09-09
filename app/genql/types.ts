@@ -232,6 +232,9 @@ export default {
             "name": [
                 25
             ],
+            "price": [
+                16
+            ],
             "pvp": [
                 7
             ],
@@ -257,7 +260,7 @@ export default {
             "price": [
                 21,
                 {
-                    "priceId": [
+                    "productId": [
                         25,
                         "String!"
                     ]

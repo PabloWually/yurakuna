@@ -1,3 +1,5 @@
+import { PriceType } from "../price/price.type";
+import { injector as priceInjector} from "../price/price.injector";
 import { builder } from "../shared/schema/builder";
 import { ListProductModel, ProductModel } from "./product.model";
 
@@ -19,6 +21,13 @@ export const ProductType = builder.objectType(ProductModel, {
       unity: t.exposeString("unity"),
       pvp: t.exposeFloat("pvp"),
       isActive: t.exposeBoolean("isActive"),
+      price: t.field({
+        type: PriceType,
+        resolve: async (root) => {
+          const price = await priceInjector.priceFinder.run(root.id);
+          return price.toPrimitives();
+        }
+      })
     }
   }
 });

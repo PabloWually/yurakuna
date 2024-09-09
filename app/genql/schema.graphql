@@ -91,6 +91,7 @@ type Product {
   id: ID!
   isActive: Boolean!
   name: String!
+  price: Price!
   pvp: Float!
   unity: String!
 }
@@ -101,7 +102,7 @@ type Products {
 }
 
 type Query {
-  price(priceId: String!): QueryPriceResult!
+  price(productId: String!): QueryPriceResult!
   prices(filters: [FilterInput!]! = [], limit: Int!, offset: Int!): PriceList!
   product(productId: String!): QueryProductResult!
   products(filters: [FilterInput!]! = [], limit: Int!, offset: Int!): Products!

@@ -66,6 +66,7 @@ export interface Product {
     id: Scalars['ID']
     isActive: Scalars['Boolean']
     name: Scalars['String']
+    price: Price
     pvp: Scalars['Float']
     unity: Scalars['String']
     __typename: 'Product'
@@ -185,6 +186,7 @@ export interface ProductGenqlSelection{
     id?: boolean | number
     isActive?: boolean | number
     name?: boolean | number
+    price?: PriceGenqlSelection
     pvp?: boolean | number
     unity?: boolean | number
     __typename?: boolean | number
@@ -199,7 +201,7 @@ export interface ProductsGenqlSelection{
 }
 
 export interface QueryGenqlSelection{
-    price?: (QueryPriceResultGenqlSelection & { __args: {priceId: Scalars['String']} })
+    price?: (QueryPriceResultGenqlSelection & { __args: {productId: Scalars['String']} })
     prices?: (PriceListGenqlSelection & { __args: {filters?: FilterInput[], limit: Scalars['Int'], offset: Scalars['Int']} })
     product?: (QueryProductResultGenqlSelection & { __args: {productId: Scalars['String']} })
     products?: (ProductsGenqlSelection & { __args: {filters?: FilterInput[], limit: Scalars['Int'], offset: Scalars['Int']} })
