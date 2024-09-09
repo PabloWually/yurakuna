@@ -12,6 +12,15 @@ export const getProducts = async ({ offset, limit }: RequestProducts) => {
         name: true,
         pvp: true,
         unity: true,
+        price: {
+          productPurchased: true,
+          productWaste: true,
+          purchaseAmount: true,
+          profit: true,
+          transpotation: true,
+          misellanious: true,
+          mod: true,
+        }
       },
       total: true,
     }

@@ -1,6 +1,6 @@
 export const measurementUnist = [
   {
-    id: "kilos",
+    id: "kilograms",
     name: "Kilogramos",
     symbol: "kg",
   },
@@ -23,5 +23,10 @@ export const measurementUnist = [
     id: "grams",
     name: "Gramos",
     symbol: "g"
-  }
+  },
+  {
+    id: "units",
+    name: "Unidades",
+    symbol: "U",
+  },
 ]

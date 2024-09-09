@@ -8,50 +8,42 @@ import { calculateUnitValue, ProductValues } from "../../utils/calculateUnitValu
 import { useState } from "react";
 import { useSubmitProduct } from "../../hooks/useCreateProduct";
 import { useSubmitPrice } from "../../hooks/useCreatePrice";
+import { useListProducts } from "../../hooks/uselistProducts";
 
 export const ModalProducts = (props: ModalProps) => {
+  const productId = props.productId ? props.productId : uuid();
   const [unitPVP, setUnitPVP] = useState<number>(0);
   const [price, setPrice] = useState<Object | null>(null);
+
+  const { refetch } = useListProducts({offset: 0, limit: 100 });
   const { mutate: submitPrice } = useSubmitPrice(() => handleClose());
   const { mutate: submit, isPending } = useSubmitProduct({
     onSuccess: () => submitPrice(price)
   });
 
-  const initialValues = {
-    name: "",
-    unity: undefined,
-    productPurchased: 0,
-    purchaseAmount: 0,
-    productWaste: 0,
-    transportation: 0,
-    profit: 0,
-    misellanious: 0,
-    mod: 0,
-  }
-
   const handleSubmit = (values: Product) => {
-    console.log('aqui')
-    const id = uuid();
-    setUnitPVP(calculateUnitValue(parseValues(values)).unitPVP);
     setPrice({
-      id: uuid(),
-      productId: id,
+      id: productId,
+      productId: productId,
       isActive: true,
       ...parseValues(values),
     });
     submit({
-      id,
+      id: productId,
       isActive: true,
-      pvp: unitPVP,
+      pvp: calculateUnitValue(parseValues(values)).unitPVP,
       name: values.name,
       unity: values.unity?.id || "",
     })
-  }
+  };
 
   const handleClose = () => {
-    setUnitPVP(0)
+    refetch();
+    setUnitPVP(0);
+    props.setProduct(emptyProduct);
+    props.setProductId(undefined);
     props.setOpen(false);
-  }
+  };
 
   return (
     <ModalForm
@@ -60,7 +52,7 @@ export const ModalProducts = (props: ModalProps) => {
       title="Productos"
     >
       <Formik
-        initialValues={initialValues}
+        initialValues={props.initialValues}
         validationSchema={schema}
         onSubmit={(values) => handleSubmit(values)}
       >
@@ -94,17 +86,33 @@ const parseValues = (values: ProductValues): ProductValues => {
   }
 }
 
-interface Product extends ProductValues {
+export const emptyProduct = {
+  name: "",
+  unity: undefined,
+  productPurchased: 0,
+  purchaseAmount: 0,
+  productWaste: 0,
+  transportation: 0,
+  profit: 0,
+  misellanious: 0,
+  mod: 0,
+}
+
+export interface Product extends ProductValues {
   name: string,
   unity: {
     id: string,
-    name:string,
+    name: string,
     symbol: string,
   } | undefined,
 }
 
 interface ModalProps {
+  productId: string | undefined;
   open: boolean;
+  initialValues: Product,
+  setProductId: (productId: string | undefined) => void,
+  setProduct: (product: Product) => void,
   setOpen: (open: boolean) => void;
 }
 
