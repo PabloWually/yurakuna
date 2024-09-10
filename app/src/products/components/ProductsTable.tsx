@@ -1,11 +1,30 @@
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useListProducts } from "../hooks/uselistProducts";
-import { Box, Button } from "@mui/material";
 import { measurementUnist } from "@/src/shared/libs/measurementUnits";
 import { Product } from "./ProductForm/ModalProducts";
+import { useDeleteProduct } from "../hooks/useDeleteProduct";
+import { useState } from "react";
+import { ModalDelete } from "@/src/shared/components/ModalDelete";
+import { ActionButtons } from "./ActionButtons";
 
 export const ProductTable = (props: Props) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [productId, setProductId] = useState<string>("");
   const { data, isLoading, refetch } = useListProducts({ offset: 0, limit: 100 });
+  const { mutate } = useDeleteProduct(() => {
+    refetch();
+  });
+
+  const handleModalEdit = (productId: string, product: Product) => {
+    props.setProduct(product);
+    props.setProductId(productId);
+    props.setOpen(true);
+  }
+
+  const handleModalDelete = (productId: string) => {
+    setOpen(true);
+    setProductId(productId);
+  }
 
   const rows = (data?.products || []).map(
     (product) => {
@@ -30,12 +49,6 @@ export const ProductTable = (props: Props) => {
         }
       }
     });
-
-  const handleModalEdit = (productId: string, product: Product) => {
-    props.setProduct(product);
-    props.setProductId(productId);
-    props.setOpen(true);
-  }
 
   const columns: GridColDef<(typeof rows)[number]>[] = [
     {
@@ -64,14 +77,12 @@ export const ProductTable = (props: Props) => {
       headerName: 'Acciones',
       width: 250,
       renderCell: (params: GridRenderCellParams<any>) => (
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center', width: '100%' }} >
-          <Button
-            variant='contained'
-            sx={{width: '110px'}}
-            onClick={()=>handleModalEdit(params.value.id, params.value.product)}
-          >Editar</Button>
-          <Button variant='contained' sx={{width: '110px'}} >Eliminar</Button>
-        </Box>
+        <ActionButtons
+          productId={params.value.id}
+          product={params.value.product}
+          handleEdit={handleModalEdit}
+          handleModalDelete={handleModalDelete}
+        />
       ),
     }
 
@@ -92,7 +103,13 @@ export const ProductTable = (props: Props) => {
         checkboxSelection
         disableRowSelectionOnClick
       />
-
+      <ModalDelete
+        message="¿Estás seguro de que deseas eliminar este contenido?"
+        contentId={productId}
+        open={open}
+        onClose={setOpen}
+        onConfirm={mutate}
+      />
     </>
   )
 }

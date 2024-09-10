@@ -1,5 +1,5 @@
 import { InputTextField } from "@/src/components/Form/InputTextField"
-import { Box, Button, Divider, Grid, TextField, Typography } from "@mui/material"
+import { Box, Button, Divider, Grid, Typography } from "@mui/material"
 import { UnitySelectField } from "./UnitySelectField"
 import { Form } from "formik"
 
@@ -24,13 +24,13 @@ export const ProductsForm = () => {
         <Grid item xs={6}>
           <InputTextField
             id='productPurchased'
-            label='Producto comprado (unidad)'
+            label='Producto comprado'
             type='number'
             fullWidth
           />
           <InputTextField
             id='productWaste'
-            label='Desperdicio (unidad)'
+            label='Desperdicio'
             type='number'
             fullWidth
           />
@@ -68,7 +68,15 @@ export const ProductsForm = () => {
           />
         </Grid>
       </Grid>
-      <Button variant="contained" type="submit">Guardar</Button>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'right',
+          marginTop: '20px'
+        }}
+      >
+        <Button variant="contained" type="submit">Guardar</Button>
+      </Box>
     </Form>
   )
 } 
