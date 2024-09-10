@@ -43,6 +43,7 @@ input FilterInput {
 type Mutation {
   createPrice(input: CreatePriceInput!): MutationCreatePriceResult!
   createProduct(input: CreateProductInput!): MutationCreateProductResult!
+  deleteProduct(productId: String!): MutationDeleteProductResult!
 }
 
 union MutationCreatePriceResult = BaseError | MutationCreatePriceSuccess
@@ -54,6 +55,12 @@ type MutationCreatePriceSuccess {
 union MutationCreateProductResult = BaseError | MutationCreateProductSuccess
 
 type MutationCreateProductSuccess {
+  data: response!
+}
+
+union MutationDeleteProductResult = BaseError | MutationDeleteProductSuccess
+
+type MutationDeleteProductSuccess {
   data: response!
 }
 

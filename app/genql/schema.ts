@@ -23,6 +23,7 @@ export type Error = (BaseError) & { __isUnion?: true }
 export interface Mutation {
     createPrice: MutationCreatePriceResult
     createProduct: MutationCreateProductResult
+    deleteProduct: MutationDeleteProductResult
     __typename: 'Mutation'
 }
 
@@ -38,6 +39,13 @@ export type MutationCreateProductResult = (BaseError | MutationCreateProductSucc
 export interface MutationCreateProductSuccess {
     data: response
     __typename: 'MutationCreateProductSuccess'
+}
+
+export type MutationDeleteProductResult = (BaseError | MutationDeleteProductSuccess) & { __isUnion?: true }
+
+export interface MutationDeleteProductSuccess {
+    data: response
+    __typename: 'MutationDeleteProductSuccess'
 }
 
 export type Operator = 'CONTAINS' | 'DATE_GTE' | 'DATE_LTE' | 'EQUAL' | 'HAS' | 'HAS_EVERY' | 'HAS_SOME' | 'NOT_EQUAL' | 'SEARCH'
@@ -130,6 +138,7 @@ export interface FilterInput {field: Scalars['String'],operator: Operator,values
 export interface MutationGenqlSelection{
     createPrice?: (MutationCreatePriceResultGenqlSelection & { __args: {input: CreatePriceInput} })
     createProduct?: (MutationCreateProductResultGenqlSelection & { __args: {input: CreateProductInput} })
+    deleteProduct?: (MutationDeleteProductResultGenqlSelection & { __args: {productId: Scalars['String']} })
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -155,6 +164,19 @@ export interface MutationCreateProductResultGenqlSelection{
 }
 
 export interface MutationCreateProductSuccessGenqlSelection{
+    data?: responseGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
+export interface MutationDeleteProductResultGenqlSelection{
+    on_BaseError?:BaseErrorGenqlSelection,
+    on_MutationDeleteProductSuccess?:MutationDeleteProductSuccessGenqlSelection,
+    on_Error?: ErrorGenqlSelection,
+    __typename?: boolean | number
+}
+
+export interface MutationDeleteProductSuccessGenqlSelection{
     data?: responseGenqlSelection
     __typename?: boolean | number
     __scalar?: boolean | number
@@ -295,6 +317,22 @@ export interface responseGenqlSelection{
     export const isMutationCreateProductSuccess = (obj?: { __typename?: any } | null): obj is MutationCreateProductSuccess => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isMutationCreateProductSuccess"')
       return MutationCreateProductSuccess_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const MutationDeleteProductResult_possibleTypes: string[] = ['BaseError','MutationDeleteProductSuccess']
+    export const isMutationDeleteProductResult = (obj?: { __typename?: any } | null): obj is MutationDeleteProductResult => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMutationDeleteProductResult"')
+      return MutationDeleteProductResult_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const MutationDeleteProductSuccess_possibleTypes: string[] = ['MutationDeleteProductSuccess']
+    export const isMutationDeleteProductSuccess = (obj?: { __typename?: any } | null): obj is MutationDeleteProductSuccess => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMutationDeleteProductSuccess"')
+      return MutationDeleteProductSuccess_possibleTypes.includes(obj.__typename)
     }
     
 
