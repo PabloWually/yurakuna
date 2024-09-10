@@ -9,8 +9,10 @@ import { useState } from "react";
 import { useSubmitProduct } from "../../hooks/useCreateProduct";
 import { useSubmitPrice } from "../../hooks/useCreatePrice";
 import { useListProducts } from "../../hooks/uselistProducts";
+import { ModalDiscardChanges } from "@/src/shared/components/ModalDiscardChanges";
 
 export const ModalProducts = (props: ModalProps) => {
+  const [open, setOpen] = useState<boolean>(false);
   const productId = props.productId ? props.productId : uuid();
   const [unitPVP, setUnitPVP] = useState<number>(0);
   const [price, setPrice] = useState<Object | null>(null);
@@ -43,12 +45,13 @@ export const ModalProducts = (props: ModalProps) => {
     props.setProduct(emptyProduct);
     props.setProductId(undefined);
     props.setOpen(false);
+    setOpen(false);
   };
 
   return (
     <ModalForm
       isOpen={props.open}
-      onClose={handleClose}
+      onClose={() => setOpen(true)}
       title="Productos"
     >
       <Formik
@@ -59,7 +62,12 @@ export const ModalProducts = (props: ModalProps) => {
         {({ values, errors }) => (
           <>
             <ProductsForm />
-            <Box display="flex" >
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'right'
+              }}
+            >
               <Button
                 onClick={() => {
                   setUnitPVP(calculateUnitValue(parseValues(values)).unitPVP);
@@ -70,6 +78,11 @@ export const ModalProducts = (props: ModalProps) => {
           </>
         )}
       </Formik>
+      <ModalDiscardChanges
+        open={open}
+        onClose={setOpen}
+        onAcept={handleClose}
+      />
     </ModalForm>
   )
 }

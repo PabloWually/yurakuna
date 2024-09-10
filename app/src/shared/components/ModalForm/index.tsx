@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import { styles } from "./style";
 import { IconButton } from "@mui/material";
+import { StyledModal } from "@/src/components/Modal";
 
 export const ModalForm: FC<ModalEventProps> = ({
   children,
@@ -13,12 +13,11 @@ export const ModalForm: FC<ModalEventProps> = ({
   title,
 }) => {
   return (
-    <Modal
+    <StyledModal
       open={isOpen}
       onClose={onClose}
-      // TODO: buscar una mejor forma para que no se sobrelapen
     >
-      <Box sx={styles.container}>
+      <Box>
         <Box sx={styles.header}>
           <Typography variant="h4" sx={styles.title}>
             {title}
@@ -31,7 +30,7 @@ export const ModalForm: FC<ModalEventProps> = ({
         </Box>
         <Box>{children}</Box>
       </Box>
-    </Modal>
+    </StyledModal>
   );
 };
 
