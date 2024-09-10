@@ -1,3 +1,4 @@
+import { PrismaPriceRepository } from '../../../core/src/Price';
 import { PrismaProductRepository, ProductByCriteriaSearher, ProductCreator, ProductDeleter, ProductFinder } from '../../../core/src/Product';
 import { dbClient } from '../globalInjector';
 export const injector = {
@@ -5,7 +6,10 @@ export const injector = {
     return new ProductCreator(new PrismaProductRepository(dbClient));
   },
   get productDeleter() {
-    return new ProductDeleter( new PrismaProductRepository(dbClient));
+    return new ProductDeleter( 
+      new PrismaProductRepository(dbClient),
+      new PrismaPriceRepository(dbClient)
+    );
   },
   get productFinder() {
     return new ProductFinder( new PrismaProductRepository(dbClient));
