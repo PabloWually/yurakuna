@@ -7,10 +7,10 @@ builder.queryField("price", (t) =>
     type: PriceModel,
     errors: {},
     args: {
-      priceId: t.arg.string({required: true}),
+      productId: t.arg.string({required: true}),
     },
-    resolve: async(_, {priceId}) => {
-      const product = await injector.priceFinder.run(priceId);
+    resolve: async(_, {productId}) => {
+      const product = await injector.priceFinder.run(productId);
       return product.toPrimitives();
     }
   })

@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
+"use client"
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ResponsiveAppBar } from "../src/components/AppBar/ResponsiveAppBar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Yurakuna App",
-  description: "Gestor de bodega de hortalizas y productos para restaurantes",
-};
+const queryClient = new QueryClient()
 
 export default function RootLayout({
   children,
@@ -22,8 +19,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <main>
-          <ResponsiveAppBar />
-          {children}
+          <QueryClientProvider client={queryClient} >
+            <ResponsiveAppBar />
+            {children}
+          </QueryClientProvider>
         </main>
       </body>
     </html>

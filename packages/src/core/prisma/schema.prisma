@@ -133,12 +133,13 @@ model stock {
 
 model price {
   id               String   @id
-  productAvailable Float
+  productPurchased Float
+  purchaseAmount    Float
   productWaste     Float
   mod              Float
   transportation   Float
   misellanious     Float
-  utility          Float
+  profit          Float
   product          product  @relation(fields: [productId], references: [id])
   productId        String   @unique
   isActive         Boolean

@@ -5,8 +5,8 @@ export default {
         7,
         8,
         9,
-        15,
-        25
+        17,
+        27
     ],
     "types": {
         "BaseError": {
@@ -14,10 +14,10 @@ export default {
                 1
             ],
             "message": [
-                25
+                27
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "Boolean": {},
@@ -34,23 +34,26 @@ export default {
             "mod": [
                 7
             ],
-            "productAvailable": [
+            "productId": [
+                27
+            ],
+            "productPurchased": [
                 7
             ],
-            "productId": [
-                25
-            ],
             "productWaste": [
+                7
+            ],
+            "profit": [
+                7
+            ],
+            "purchaseAmount": [
                 7
             ],
             "transportation": [
                 7
             ],
-            "utility": [
-                7
-            ],
             "__typename": [
-                25
+                27
             ]
         },
         "CreateProductInput": {
@@ -61,16 +64,16 @@ export default {
                 1
             ],
             "name": [
-                25
+                27
             ],
             "pvp": [
                 7
             ],
             "unity": [
-                25
+                27
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "Date": {},
@@ -79,27 +82,27 @@ export default {
                 1
             ],
             "message": [
-                25
+                27
             ],
             "on_BaseError": [
                 0
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "FilterInput": {
             "field": [
-                25
+                27
             ],
             "operator": [
-                15
+                17
             ],
             "values": [
-                25
+                27
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "Float": {},
@@ -124,8 +127,17 @@ export default {
                     ]
                 }
             ],
+            "deleteProduct": [
+                15,
+                {
+                    "productId": [
+                        27,
+                        "String!"
+                    ]
+                }
+            ],
             "__typename": [
-                25
+                27
             ]
         },
         "MutationCreatePriceResult": {
@@ -139,15 +151,15 @@ export default {
                 5
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "MutationCreatePriceSuccess": {
             "data": [
-                26
+                28
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "MutationCreateProductResult": {
@@ -161,15 +173,37 @@ export default {
                 5
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "MutationCreateProductSuccess": {
             "data": [
-                26
+                28
             ],
             "__typename": [
-                25
+                27
+            ]
+        },
+        "MutationDeleteProductResult": {
+            "on_BaseError": [
+                0
+            ],
+            "on_MutationDeleteProductSuccess": [
+                16
+            ],
+            "on_Error": [
+                5
+            ],
+            "__typename": [
+                27
+            ]
+        },
+        "MutationDeleteProductSuccess": {
+            "data": [
+                28
+            ],
+            "__typename": [
+                27
             ]
         },
         "Operator": {},
@@ -186,34 +220,37 @@ export default {
             "mod": [
                 7
             ],
-            "productAvailable": [
+            "productId": [
+                27
+            ],
+            "productPurchased": [
                 7
             ],
-            "productId": [
-                25
-            ],
             "productWaste": [
+                7
+            ],
+            "profit": [
+                7
+            ],
+            "purchaseAmount": [
                 7
             ],
             "transpotation": [
                 7
             ],
-            "utility": [
-                7
-            ],
             "__typename": [
-                25
+                27
             ]
         },
         "PriceList": {
             "products": [
-                16
+                18
             ],
             "total": [
                 9
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "Product": {
@@ -224,66 +261,43 @@ export default {
                 1
             ],
             "name": [
-                25
+                27
+            ],
+            "price": [
+                18
             ],
             "pvp": [
                 7
             ],
             "unity": [
-                25
+                27
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "Products": {
             "products": [
-                18
+                20
             ],
             "total": [
                 9
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "Query": {
             "price": [
-                21,
+                23,
                 {
-                    "priceId": [
-                        25,
+                    "productId": [
+                        27,
                         "String!"
                     ]
                 }
             ],
             "prices": [
-                17,
-                {
-                    "filters": [
-                        6,
-                        "[FilterInput!]!"
-                    ],
-                    "limit": [
-                        9,
-                        "Int!"
-                    ],
-                    "offset": [
-                        9,
-                        "Int!"
-                    ]
-                }
-            ],
-            "product": [
-                23,
-                {
-                    "productId": [
-                        25,
-                        "String!"
-                    ]
-                }
-            ],
-            "products": [
                 19,
                 {
                     "filters": [
@@ -300,8 +314,34 @@ export default {
                     ]
                 }
             ],
+            "product": [
+                25,
+                {
+                    "productId": [
+                        27,
+                        "String!"
+                    ]
+                }
+            ],
+            "products": [
+                21,
+                {
+                    "filters": [
+                        6,
+                        "[FilterInput!]!"
+                    ],
+                    "limit": [
+                        9,
+                        "Int!"
+                    ],
+                    "offset": [
+                        9,
+                        "Int!"
+                    ]
+                }
+            ],
             "__typename": [
-                25
+                27
             ]
         },
         "QueryPriceResult": {
@@ -309,21 +349,21 @@ export default {
                 0
             ],
             "on_QueryPriceSuccess": [
-                22
+                24
             ],
             "on_Error": [
                 5
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "QueryPriceSuccess": {
             "data": [
-                16
+                18
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "QueryProductResult": {
@@ -331,21 +371,21 @@ export default {
                 0
             ],
             "on_QueryProductSuccess": [
-                24
+                26
             ],
             "on_Error": [
                 5
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "QueryProductSuccess": {
             "data": [
-                18
+                20
             ],
             "__typename": [
-                25
+                27
             ]
         },
         "String": {},
@@ -357,7 +397,7 @@ export default {
                 1
             ],
             "__typename": [
-                25
+                27
             ]
         }
     }

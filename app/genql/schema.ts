@@ -23,6 +23,7 @@ export type Error = (BaseError) & { __isUnion?: true }
 export interface Mutation {
     createPrice: MutationCreatePriceResult
     createProduct: MutationCreateProductResult
+    deleteProduct: MutationDeleteProductResult
     __typename: 'Mutation'
 }
 
@@ -40,6 +41,13 @@ export interface MutationCreateProductSuccess {
     __typename: 'MutationCreateProductSuccess'
 }
 
+export type MutationDeleteProductResult = (BaseError | MutationDeleteProductSuccess) & { __isUnion?: true }
+
+export interface MutationDeleteProductSuccess {
+    data: response
+    __typename: 'MutationDeleteProductSuccess'
+}
+
 export type Operator = 'CONTAINS' | 'DATE_GTE' | 'DATE_LTE' | 'EQUAL' | 'HAS' | 'HAS_EVERY' | 'HAS_SOME' | 'NOT_EQUAL' | 'SEARCH'
 
 export interface Price {
@@ -47,11 +55,12 @@ export interface Price {
     isActive: Scalars['Boolean']
     misellanious: Scalars['Float']
     mod: Scalars['Float']
-    productAvailable: Scalars['Float']
     productId: Scalars['String']
+    productPurchased: Scalars['Float']
     productWaste: Scalars['Float']
+    profit: Scalars['Float']
+    purchaseAmount: Scalars['Float']
     transpotation: Scalars['Float']
-    utility: Scalars['Float']
     __typename: 'Price'
 }
 
@@ -65,6 +74,7 @@ export interface Product {
     id: Scalars['ID']
     isActive: Scalars['Boolean']
     name: Scalars['String']
+    price: Price
     pvp: Scalars['Float']
     unity: Scalars['String']
     __typename: 'Product'
@@ -111,7 +121,7 @@ export interface BaseErrorGenqlSelection{
     __scalar?: boolean | number
 }
 
-export interface CreatePriceInput {id: Scalars['ID'],isActive: Scalars['Boolean'],misellanious: Scalars['Float'],mod: Scalars['Float'],productAvailable: Scalars['Float'],productId: Scalars['String'],productWaste: Scalars['Float'],transportation: Scalars['Float'],utility: Scalars['Float']}
+export interface CreatePriceInput {id: Scalars['ID'],isActive: Scalars['Boolean'],misellanious: Scalars['Float'],mod: Scalars['Float'],productId: Scalars['String'],productPurchased: Scalars['Float'],productWaste: Scalars['Float'],profit: Scalars['Float'],purchaseAmount: Scalars['Float'],transportation: Scalars['Float']}
 
 export interface CreateProductInput {id: Scalars['ID'],isActive: Scalars['Boolean'],name: Scalars['String'],pvp: Scalars['Float'],unity: Scalars['String']}
 
@@ -128,6 +138,7 @@ export interface FilterInput {field: Scalars['String'],operator: Operator,values
 export interface MutationGenqlSelection{
     createPrice?: (MutationCreatePriceResultGenqlSelection & { __args: {input: CreatePriceInput} })
     createProduct?: (MutationCreateProductResultGenqlSelection & { __args: {input: CreateProductInput} })
+    deleteProduct?: (MutationDeleteProductResultGenqlSelection & { __args: {productId: Scalars['String']} })
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -158,16 +169,30 @@ export interface MutationCreateProductSuccessGenqlSelection{
     __scalar?: boolean | number
 }
 
+export interface MutationDeleteProductResultGenqlSelection{
+    on_BaseError?:BaseErrorGenqlSelection,
+    on_MutationDeleteProductSuccess?:MutationDeleteProductSuccessGenqlSelection,
+    on_Error?: ErrorGenqlSelection,
+    __typename?: boolean | number
+}
+
+export interface MutationDeleteProductSuccessGenqlSelection{
+    data?: responseGenqlSelection
+    __typename?: boolean | number
+    __scalar?: boolean | number
+}
+
 export interface PriceGenqlSelection{
     id?: boolean | number
     isActive?: boolean | number
     misellanious?: boolean | number
     mod?: boolean | number
-    productAvailable?: boolean | number
     productId?: boolean | number
+    productPurchased?: boolean | number
     productWaste?: boolean | number
+    profit?: boolean | number
+    purchaseAmount?: boolean | number
     transpotation?: boolean | number
-    utility?: boolean | number
     __typename?: boolean | number
     __scalar?: boolean | number
 }
@@ -183,6 +208,7 @@ export interface ProductGenqlSelection{
     id?: boolean | number
     isActive?: boolean | number
     name?: boolean | number
+    price?: PriceGenqlSelection
     pvp?: boolean | number
     unity?: boolean | number
     __typename?: boolean | number
@@ -197,7 +223,7 @@ export interface ProductsGenqlSelection{
 }
 
 export interface QueryGenqlSelection{
-    price?: (QueryPriceResultGenqlSelection & { __args: {priceId: Scalars['String']} })
+    price?: (QueryPriceResultGenqlSelection & { __args: {productId: Scalars['String']} })
     prices?: (PriceListGenqlSelection & { __args: {filters?: FilterInput[], limit: Scalars['Int'], offset: Scalars['Int']} })
     product?: (QueryProductResultGenqlSelection & { __args: {productId: Scalars['String']} })
     products?: (ProductsGenqlSelection & { __args: {filters?: FilterInput[], limit: Scalars['Int'], offset: Scalars['Int']} })
@@ -291,6 +317,22 @@ export interface responseGenqlSelection{
     export const isMutationCreateProductSuccess = (obj?: { __typename?: any } | null): obj is MutationCreateProductSuccess => {
       if (!obj?.__typename) throw new Error('__typename is missing in "isMutationCreateProductSuccess"')
       return MutationCreateProductSuccess_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const MutationDeleteProductResult_possibleTypes: string[] = ['BaseError','MutationDeleteProductSuccess']
+    export const isMutationDeleteProductResult = (obj?: { __typename?: any } | null): obj is MutationDeleteProductResult => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMutationDeleteProductResult"')
+      return MutationDeleteProductResult_possibleTypes.includes(obj.__typename)
+    }
+    
+
+
+    const MutationDeleteProductSuccess_possibleTypes: string[] = ['MutationDeleteProductSuccess']
+    export const isMutationDeleteProductSuccess = (obj?: { __typename?: any } | null): obj is MutationDeleteProductSuccess => {
+      if (!obj?.__typename) throw new Error('__typename is missing in "isMutationDeleteProductSuccess"')
+      return MutationDeleteProductSuccess_possibleTypes.includes(obj.__typename)
     }
     
 

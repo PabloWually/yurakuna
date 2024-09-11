@@ -9,12 +9,13 @@ export class Price extends AggregateRoot {
   constructor (
     readonly id: PriceId,
     readonly productId: ProductId,
-    readonly productAvailable: ProductAvailable,
+    readonly productPurchased: ProductPurchased,
+    readonly purchaseAmount: PurchaseAmount,
     readonly productWaste: ProductWaste,
     readonly mod:MOD,
     readonly transportation: Transportation,
     readonly misellanious: Misellanious,
-    readonly utility: Utility,
+    readonly profit: Profit,
     readonly isActive: IsActive,
   ) {
     super();
@@ -24,12 +25,13 @@ export class Price extends AggregateRoot {
     return new Price(
       new PriceId(primitives.id),
       new ProductId(primitives.productId),
-      new ProductAvailable(primitives.productAvailable),
+      new ProductPurchased(primitives.productPurchased),
+      new PurchaseAmount(primitives.purchaseAmount),
       new ProductWaste(primitives.productWaste),
       new MOD(primitives.mod),
       new Transportation(primitives.transportation),
       new Misellanious(primitives.misellanious),
-      new Utility(primitives.utility),
+      new Profit(primitives.profit),
       new IsActive(primitives.isActive),
     );
   }
@@ -38,23 +40,25 @@ export class Price extends AggregateRoot {
     return{
       id: this.id.value,
       productId: this.productId.value,
-      productAvailable: this.productAvailable.value,
+      productPurchased: this.productPurchased.value,
+      purchaseAmount: this.purchaseAmount.value,
       productWaste: this.productWaste.value,
       mod: this.mod.value,
       transportation: this.transportation.value,
       misellanious: this.misellanious.value,
-      utility: this.utility.value,
+      profit: this.profit.value,
       isActive: this.isActive.value,
     }
   }
 }
 
 export class PriceId extends Uuid{}
-class ProductId extends StringValue{}
-class ProductAvailable extends PositiveNumber{}
+export class ProductId extends StringValue{}
+class ProductPurchased extends PositiveNumber{}
+class PurchaseAmount extends PositiveNumber{}
 class ProductWaste extends PositiveNumber{}
 class MOD extends PositiveNumber{}
 class Transportation extends PositiveNumber{}
 class Misellanious extends PositiveNumber{}
-class Utility extends PositiveNumber{}
+class Profit extends PositiveNumber{}
 class IsActive extends BooleanValue{}

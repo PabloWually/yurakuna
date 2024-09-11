@@ -8,11 +8,12 @@ input CreatePriceInput {
   isActive: Boolean!
   misellanious: Float!
   mod: Float!
-  productAvailable: Float!
   productId: String!
+  productPurchased: Float!
   productWaste: Float!
+  profit: Float!
+  purchaseAmount: Float!
   transportation: Float!
-  utility: Float!
 }
 
 input CreateProductInput {
@@ -42,6 +43,7 @@ input FilterInput {
 type Mutation {
   createPrice(input: CreatePriceInput!): MutationCreatePriceResult!
   createProduct(input: CreateProductInput!): MutationCreateProductResult!
+  deleteProduct(productId: String!): MutationDeleteProductResult!
 }
 
 union MutationCreatePriceResult = BaseError | MutationCreatePriceSuccess
@@ -53,6 +55,12 @@ type MutationCreatePriceSuccess {
 union MutationCreateProductResult = BaseError | MutationCreateProductSuccess
 
 type MutationCreateProductSuccess {
+  data: response!
+}
+
+union MutationDeleteProductResult = BaseError | MutationDeleteProductSuccess
+
+type MutationDeleteProductSuccess {
   data: response!
 }
 
@@ -73,11 +81,12 @@ type Price {
   isActive: Boolean!
   misellanious: Float!
   mod: Float!
-  productAvailable: Float!
   productId: String!
+  productPurchased: Float!
   productWaste: Float!
+  profit: Float!
+  purchaseAmount: Float!
   transpotation: Float!
-  utility: Float!
 }
 
 type PriceList {
@@ -89,6 +98,7 @@ type Product {
   id: ID!
   isActive: Boolean!
   name: String!
+  price: Price!
   pvp: Float!
   unity: String!
 }
@@ -99,7 +109,7 @@ type Products {
 }
 
 type Query {
-  price(priceId: String!): QueryPriceResult!
+  price(productId: String!): QueryPriceResult!
   prices(filters: [FilterInput!]! = [], limit: Int!, offset: Int!): PriceList!
   product(productId: String!): QueryProductResult!
   products(filters: [FilterInput!]! = [], limit: Int!, offset: Int!): Products!
