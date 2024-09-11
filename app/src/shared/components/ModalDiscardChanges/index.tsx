@@ -24,12 +24,12 @@ export const ModalDiscardChanges = ({
         <Box
           sx={{
             display: 'flex',
-            paddingX: '50px',
             justifyContent: 'space-evenly',
           }}
         >
           <Button
             variant="outlined"
+            sx={{minWidth: '110px'}}
             onClick={() => onAcept()}
           >
             Salir

@@ -52,7 +52,7 @@ export const ModalProducts = (props: ModalProps) => {
     <ModalForm
       isOpen={props.open}
       onClose={() => setOpen(true)}
-      title="Productos"
+      title="Producto"
     >
       <Formik
         initialValues={props.initialValues}
@@ -73,7 +73,7 @@ export const ModalProducts = (props: ModalProps) => {
                   setUnitPVP(calculateUnitValue(parseValues(values)).unitPVP);
                 }}
               >Calcular PVP unitario</Button>
-              <Typography sx={{ color: 'primary', alignSelf: 'center' }}>{`$ ${unitPVP}`}</Typography>
+              <Typography sx={{ color: 'primary', alignSelf: 'center' }}>{`$ ${unitPVP.toFixed(2)}`}</Typography>
             </Box>
           </>
         )}

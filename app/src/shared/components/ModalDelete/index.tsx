@@ -30,7 +30,7 @@ export const ModalDelete = ({
         <Box
           sx={{
             display: 'flex',
-            paddingX: '50px',
+            paddingX: {md:'50px'},
             justifyContent: 'space-evenly',
           }}
         >

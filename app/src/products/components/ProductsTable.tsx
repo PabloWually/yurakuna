@@ -6,6 +6,7 @@ import { useDeleteProduct } from "../hooks/useDeleteProduct";
 import { useState } from "react";
 import { ModalDelete } from "@/src/shared/components/ModalDelete";
 import { ActionButtons } from "./ActionButtons";
+import { Box, CircularProgress } from "@mui/material";
 
 export const ProductTable = (props: Props) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -85,24 +86,53 @@ export const ProductTable = (props: Props) => {
         />
       ),
     }
-
   ];
-  return (
-    <>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          paddingY: { xs: '10px', md: '40px' },
+          marginX: '10%',
+          width: '80%',
+          height: '90%',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
+      >
+        <CircularProgress />
+      </Box>
+    )
+  }
+  return (
+    <Box
+      sx={{
+        display: {xs: 'block' ,md:'flex'},
+        justifyContent: 'center',
+      }}
+    >
+      <Box
+        sx={{
+          paddingY: { xs: '25px', md: '40px' },
+          height: { xs: '500px', lg: '700px' },
+          maxWidth: '700px'
+        }}
+      >
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5]}
+          disableRowSelectionOnClick
+        />
+      </Box>
       <ModalDelete
         message="¿Estás seguro de que deseas eliminar este contenido?"
         contentId={productId}
@@ -110,7 +140,7 @@ export const ProductTable = (props: Props) => {
         onClose={setOpen}
         onConfirm={mutate}
       />
-    </>
+    </Box>
   )
 }
 

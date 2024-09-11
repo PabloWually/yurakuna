@@ -9,10 +9,16 @@ export const Products = () => {
   const [product, setProduct] = useState<Product>(emptyProduct);
 
   return (
-    <Box>
-      <Typography variant="h1">Productos</Typography>
+    <Box
+      sx={{
+        width: "device-width",
+        height: "93vh",
+        padding: {xs: '1rem', md: '4rem' , lg: '6rem'}
+      }}
+    >
+      <Typography sx={{fontWeight: '700'}} variant="h2">Productos</Typography>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'end' }} >
-        <Button variant='contained' onClick={() => setOpen(true)} >Nuevo</Button>
+        <Button sx={{minWidth: '110px'}} variant='contained' onClick={() => setOpen(true)} >Nuevo</Button>
       </Box>
       <ProductTable
         setProductId={setProductId}
