@@ -1,6 +1,6 @@
 import { PrismaRepository } from "../../shared/infrastructure/PrismaRepository";
 import { Price, PriceRepository } from "../domain";
-import { PriceId } from "../domain/Price";
+import { PriceId, ProductId } from "../domain/Price";
 import { Nullable } from "../../shared/domain/Nullable";
 import { Criteria } from "../../shared/domain/Criteria";
 import { PrismaCriteriaConverter } from "../../shared/infrastructure/PrismaCriteriaConverter";
@@ -28,10 +28,10 @@ export class PrismaPriceRepository extends PrismaRepository
     });
   }
 
-  async find(priceId: PriceId): Promise<Nullable<Price>> {
+  async find(productId: ProductId): Promise<Nullable<Price>> {
     const response = await this.prisma.price.findUnique({
       where: {
-        id: priceId.value,
+        productId: productId.value,
         isActive: true,
       }
     });
