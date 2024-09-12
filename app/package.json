@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "genql": "genql --endpoint https://yurakuna.vercel.app/graphql --output ./genql"
+    "genql": "genql --endpoint https://yurakuna-api.vercel.app/graphql --output ./genql"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

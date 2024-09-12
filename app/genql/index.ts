@@ -33,7 +33,7 @@ export interface Client {
 
 export const createClient = function (options?: ClientOptions): Client {
   return createClientOriginal({
-    url: 'https://yurakuna.vercel.app/graphql',
+    url: 'https://yurakuna-api.vercel.app/graphql',
 
     ...options,
     queryRoot: typeMap.Query!,
